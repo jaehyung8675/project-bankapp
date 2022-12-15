@@ -160,6 +160,27 @@ btnTransfer.addEventListener("click", function (e) {
   updateUI(currentAccount);
 });
 
+btnClose.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const closingAccIndex = accounts.findIndex(
+      (acc) => acc.username === currentAccount.username
+    );
+
+    // Deleting Account
+    accounts.splice(closingAccIndex, 1);
+
+    // Hide UI
+    inputCloseUsername.value = inputClosePin.value = "";
+    inputClosePin.blur();
+    containerApp.style.opacity = 0;
+  }
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
