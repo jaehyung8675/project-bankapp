@@ -72,7 +72,7 @@ const displayMovements = function (movements, sorted = false) {
 };
 
 const calcDisplayBalance = function (acc) {
-  acc.balance = movements.reduce((acc, cur) => (acc += cur), 0);
+  acc.balance = acc.movements.reduce((acc, cur) => (acc += cur), 0);
   labelBalance.textContent = `$${acc.balance}`;
 };
 
