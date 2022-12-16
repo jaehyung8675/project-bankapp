@@ -50,10 +50,12 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sorted = false) {
   containerMovements.innerHTML = "";
 
-  movements.forEach(function (mov, i) {
+  const movs = sorted ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? "deposit" : "withdrawal";
 
     const html = `
@@ -137,6 +139,14 @@ btnLogin.addEventListener("click", function (e) {
   }
 });
 
+let sorted = false;
+btnSort.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
+});
+
 btnTransfer.addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -160,6 +170,22 @@ btnTransfer.addEventListener("click", function (e) {
   updateUI(currentAccount);
 });
 
+btnLoan.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  const loanAmount = Number(inputLoanAmount.value);
+
+  if (
+    loanAmount > 0 &&
+    currentAccount.movements.some((mov) => mov >= loanAmount * 0.1)
+  ) {
+    currentAccount.movements.push(loanAmount);
+    updateUI(currentAccount);
+  }
+
+  inputLoanAmount.value = "";
+});
+
 btnClose.addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -170,37 +196,9 @@ btnClose.addEventListener("click", function (e) {
     const closingAccIndex = accounts.findIndex(
       (acc) => acc.username === currentAccount.username
     );
-
-    // Deleting Account
     accounts.splice(closingAccIndex, 1);
-
-    // Hide UI
     inputCloseUsername.value = inputClosePin.value = "";
     inputClosePin.blur();
     containerApp.style.opacity = 0;
   }
 });
-
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
-
-const currencies = new Map([
-  ["USD", "United States dollar"],
-  ["EUR", "Euro"],
-  ["GBP", "Pound sterling"],
-]);
-
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-/////////////////////////////////////////////////
-
-// const maximumNumber = movements.reduce((acc, cur) => {
-//   return acc > cur ? acc : cur;
-// }, movements[0]);
-
-// console.log(maximumNumber);
-
-// const account = accounts.find((acc) => acc.owner === "Jonas Schmedtmann");
-
-// console.log(account);
