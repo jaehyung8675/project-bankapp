@@ -9,8 +9,21 @@
     <title>Bankapp</title>
   </head>
   <body>
+    <div class="announcement">
+      <div class="login-info">
+        <p><strong>Please use the following login info</strong></p>
+        <p>
+          <strong>User:</strong> js <strong>Pin:</strong> 1111 /
+          <strong>User:</strong> jd <strong>Pin:</strong> 2222
+        </p>
+      </div>
+    </div>
     <nav>
-      <img src="./assets/bankapp-logo.png" alt="Bankapp Logo" class="logo" />
+      <img
+        src="./assets/bankapp-logo-orange.png"
+        alt="Bankapp Logo"
+        class="logo"
+      />
       <form class="login">
         <input
           type="text"
@@ -34,26 +47,26 @@
             <p class="welcome__date">
               Today <span class="date">05 / 03 / 2037</span>
             </p>
-            <p class="welcome-greeting">Log in to get started</p>
+            <p class="welcome-greeting">Welcome Back, Jay</p>
           </div>
         </div>
 
         <ul class="summary-list">
           <li class="summary-item">
-            <p class="summary__label">balance</p>
-            <p class="summary__value summary__value--balance">$0000</p>
+            <p class="summary__label">Balance</p>
+            <p class="summary__value summary__value--balance">$3840</p>
           </li>
           <li class="summary-item">
             <p class="summary__label">In</p>
-            <p class="summary__value summary__value--in">$0000</p>
+            <p class="summary__value summary__value--in">$5020</p>
           </li>
           <li class="summary-item">
             <p class="summary__label">Out</p>
-            <p class="summary__value summary__value--out">$0000</p>
+            <p class="summary__value summary__value--out">$1180</p>
           </li>
           <li class="summary-item">
             <p class="summary__label">Interest</p>
-            <p class="summary__value summary__value--interest">$0000</p>
+            <p class="summary__value summary__value--interest">$59.4</p>
           </li>
         </ul>
       </section>
@@ -66,14 +79,14 @@
                 2 deposit
               </div>
               <div class="movements__date">3 days ago</div>
-              <div class="movements__value">4 000€</div>
+              <div class="movements__value">$4000</div>
             </div>
             <div class="movements__row">
               <div class="movements__type movements__type--withdrawal">
                 1 withdrawal
               </div>
               <div class="movements__date">24/01/2037</div>
-              <div class="movements__value">-378€</div>
+              <div class="movements__value">$-378</div>
             </div>
           </div>
           <button class="btn--sort">Sort</button>

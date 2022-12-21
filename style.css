@@ -5,19 +5,30 @@
 }
 
 :root {
-  --main-color-blue: #aac1d9;
-  --main-color-pink: #f5d0c7;
-  --main-color-dark-grey: #1a1a1a;
-  --main-color-grey: #999999;
+  --main-color-orange: #f56900;
+  --main-color-red: #ff0000;
+  --main-color-light-grey: #eee;
+  --main-color-black: #1d1d1f;
 }
 
 body {
   font-family: "Arial", sans-serif;
-  color: #444;
-  background-color: var(--main-color-dark-grey);
-  max-width: 1000px;
+  color: #1d1d1f;
+  background-color: var(--main-color-light-grey);
   height: 100vh;
   margin: 0 auto;
+}
+
+.announcement {
+  background-color: var(--main-color-orange);
+}
+
+.login-info {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
 }
 
 /* APP NAV */
@@ -25,7 +36,10 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1000px;
   padding-top: 2rem;
+  margin-right: auto;
+  margin-left: auto;
   margin-bottom: 2rem;
 }
 
@@ -41,10 +55,9 @@ nav {
   width: 150px;
   font-size: 14px;
   text-align: center;
-  color: var(--main-color-grey);
-  border: 1px solid var(--main-color-grey);
-  border-radius: 30px;
-  background-color: var(--main-color-dark-grey);
+  border: 1px solid var(--main-color-light-grey);
+  border-radius: 8px;
+  background-color: #fff;
   transition: all 0.3s;
   margin-right: 0.5rem;
   padding: 10px 0;
@@ -53,30 +66,28 @@ nav {
 .login__input:focus,
 .form__input:focus {
   outline: none;
-  border: 1px solid #ccc;
-  color: #ccc;
+  border: 1px solid var(--main-color-light-grey);
 }
 
-.login__input::placeholder {
-  color: var(--main-color-grey);
-}
+/* .login__input::placeholder {
+  color: var(--main-color-orange); 
+} */
 
 .login__btn,
 .form__btn {
   width: 55px;
-  border: 1px solid var(--main-color-grey);
-  border-radius: 30px;
-  background-color: var(--main-color-dark-grey);
+  border: 1px solid var(--main-color-light-grey);
+  border-radius: 8px;
+  background-color: #fff;
   cursor: pointer;
   transition: all 0.3s;
-  background-image: url(./assets/arrow.png);
+  background-image: url(./assets/black-arrow.png);
   background-repeat: no-repeat;
   background-size: 23px 15px;
   background-position: center;
 }
 
 .login__btn:hover,
-.btn--sort:hover,
 .form__btn:hover {
   color: #ccc;
   border: 1px solid #ccc;
@@ -86,6 +97,8 @@ nav {
 .app {
   opacity: 0;
   transition: all 1s;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 /* APP INTRO */
@@ -95,10 +108,16 @@ nav {
   margin-bottom: 2rem;
 }
 
+.welcome__date,
+.summary__label {
+  font-size: 14px;
+  margin-bottom: 0.5rem;
+}
+
 .welcome-greeting {
   font-size: 24px;
   font-weight: bold;
-  color: #fff;
+  color: #1d1d1f;
 }
 
 .summary-list {
@@ -107,21 +126,13 @@ nav {
 }
 
 .summary-item {
-  border-left: 1px solid var(--main-color-grey);
+  border-left: 1px solid #555;
   padding-left: 1.5rem;
   padding-right: 3rem;
 }
 
 .summary-item:last-child {
   padding-right: 0;
-}
-
-.summary__label,
-.welcome__date {
-  font-size: 14px;
-  color: var(--main-color-grey);
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
 }
 
 .summary__value {
@@ -131,20 +142,20 @@ nav {
 
 .summary__value--balance,
 .summary__value--out {
-  color: var(--main-color-pink);
+  color: var(--main-color-orange);
 }
 
 .summary__value--in,
 .summary__value--interest {
-  color: var(--main-color-blue);
+  color: var(--main-color-orange);
 }
 
 /* APP MAIN */
 .app__main {
   display: flex;
-  border: 1px solid var(--main-color-grey);
-  border-radius: 30px;
+  border-radius: 12px;
   max-height: 500px;
+  background-color: #fff;
 }
 
 .movements__container {
@@ -157,7 +168,7 @@ nav {
   padding: 1.6rem 0;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--main-color-grey);
+  border-bottom: 1px solid #ddd;
 }
 
 .movements__row:last-child {
@@ -165,34 +176,31 @@ nav {
 }
 
 .movements__type {
-  font-size: 14px;
+  font-size: 12px;
   text-transform: uppercase;
-  font-weight: bold;
-  color: var(--main-color-dark-grey);
-  padding: 0.4rem 2rem;
-  border-radius: 10rem;
-  margin-right: 2rem;
+  color: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  margin-right: 1rem;
 }
 
 .movements__date {
   font-size: 14px;
-  text-transform: uppercase;
-  font-weight: bold;
-  color: #fff;
+  color: var(--main-color-black);
 }
 
 .movements__type--deposit {
-  background-color: var(--main-color-blue);
+  background-color: var(--main-color-orange);
 }
 
 .movements__type--withdrawal {
-  background-color: var(--main-color-pink);
+  background-color: var(--main-color-red);
 }
 
 .movements__value {
   font-size: 20px;
   font-weight: bold;
-  color: #fff;
+  color: #1d1d1f;
   margin-left: auto;
 }
 
@@ -200,25 +208,30 @@ nav {
   position: sticky;
   bottom: 2rem;
   right: 2rem;
-  border: 1px solid var(--main-color-grey);
+  border: 2px solid var(--main-color-orange);
   border-radius: 2rem;
-  background: var(--main-color-dark-grey);
   font-size: 16px;
-  color: var(--main-color-grey);
+  color: var(--main-color-orange);
+  background-color: #fff;
   text-transform: uppercase;
   cursor: pointer;
   padding: 0.5rem 2rem;
   margin-left: 417px;
 }
 
+.btn--sort:hover {
+  background-color: var(--main-color-orange);
+  color: #fff;
+}
+
 /* APP - OPERATIONS */
 .operations {
   width: 40%;
-  border-left: 1px solid var(--main-color-grey);
+  border-left: 5px solid #eee;
 }
 
 .operation {
-  border-bottom: 1px solid var(--main-color-grey);
+  border-bottom: 1px solid var(--main-color-light-grey);
   margin: 0 2.5rem;
   padding: 2rem 0;
 }
@@ -231,7 +244,7 @@ nav {
   margin-bottom: 1rem;
   font-size: 18px;
   font-weight: bold;
-  color: #fff;
+  color: var(--main-color-black);
 }
 
 .form {
@@ -246,30 +259,30 @@ nav {
 
 .form__input {
   width: 100%;
-  border: 1px solid var(--main-color-grey);
-  border-radius: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   background-color: var(--main-color-dark-grey);
   font-size: 18px;
   text-align: center;
-  color: var(--main-color-grey);
+  /* color: var(--main-color-grey); */
   padding: 0.4rem 1rem;
   transition: all 0.3s;
 }
 
 .form__label {
   font-size: 14px;
-  color: var(--main-color-grey);
+  color: var(--main-color-black);
   text-align: center;
 }
 
 .logout-timer {
   text-align: center;
   font-size: 16px;
-  color: var(--main-color-grey);
+  color: var(--main-color-black);
   padding: 1.5rem 0 2.5rem;
 }
 
 .timer {
   font-weight: bold;
-  color: #fff;
+  color: var(--main-color-black);
 }
