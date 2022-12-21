@@ -92,7 +92,7 @@ const displayMovements = function (acc, sorted = false) {
       i + 1
     } ${type}</div>
         <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${mov}</div>
+        <div class="movements__value">${mov.toFixed(2)}</div>
       </div>
     `;
 
@@ -109,19 +109,19 @@ const calcDisplaySummary = function (acc) {
   const income = acc.movements
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `$${income}`;
+  labelSumIn.textContent = `$${income.toFixed(2)}`;
 
   const out = acc.movements
     .filter((mov) => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `$${Math.abs(out)}`;
+  labelSumOut.textContent = `$${Math.abs(out).toFixed(2)}`;
 
   const interest = acc.movements
     .filter((mov) => mov > 0)
     .map((deposit) => (deposit * acc.interestRate) / 100)
     .filter((int) => int >= 1)
     .reduce((acc, interest) => acc + interest, 0);
-  labelSumInterest.textContent = `$${interest}`;
+  labelSumInterest.textContent = `$${interest.toFixed(2)}`;
 };
 
 const updateUI = function (acc) {
@@ -148,9 +148,9 @@ createUsername(accounts);
 let currentAccount;
 
 // ALWAYS LOGGED IN
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 1;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 1;
 
 btnLogin.addEventListener("click", function (e) {
   e.preventDefault();
@@ -169,12 +169,10 @@ btnLogin.addEventListener("click", function (e) {
     inputLoginPin.blur();
 
     // Create Current Date
-    const now = new Date();
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const day = `${now.getDate()}`.padStart(2, 0);
-    const year = now.getFullYear();
-    const hour = now.getHours();
-    const minute = now.getMinutes();
+    const today = new Date();
+    const month = `${today.getMonth() + 1}`.padStart(2, 0);
+    const day = `${today.getDate()}`.padStart(2, 0);
+    const year = today.getFullYear();
 
     labelDate.textContent = `${month} / ${day} / ${year}`;
 
@@ -198,7 +196,6 @@ btnTransfer.addEventListener("click", function (e) {
     (acc) => acc.username === inputTransferTo.value
   );
   const transferAmount = +inputTransferAmount.value;
-
   inputTransferAmount.value = inputTransferTo.value = "";
 
   if (
@@ -209,12 +206,11 @@ btnTransfer.addEventListener("click", function (e) {
   ) {
     currentAccount.movements.push(-transferAmount);
     receiver.movements.push(transferAmount);
-
     // Add transfer date
     currentAccount.movementsDates.push(new Date().toISOString());
     receiver.movementsDates.push(new Date().toISOString());
   }
-
+  // Update UI
   updateUI(currentAccount);
 });
 
@@ -222,16 +218,18 @@ btnLoan.addEventListener("click", function (e) {
   e.preventDefault();
 
   const loanAmount = Math.floor(inputLoanAmount.value);
+  inputLoanAmount.value = "";
 
   if (
     loanAmount > 0 &&
     currentAccount.movements.some((mov) => mov >= loanAmount * 0.1)
   ) {
     currentAccount.movements.push(loanAmount);
-    updateUI(currentAccount);
+    // Add loan date
+    currentAccount.movementsDates.push(new Date().toISOString());
   }
-
-  inputLoanAmount.value = "";
+  // Update UI
+  updateUI(currentAccount);
 });
 
 btnClose.addEventListener("click", function (e) {
