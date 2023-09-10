@@ -199,7 +199,7 @@ const startLogOutTimer = function () {
   };
 
   // Set time
-  let time = 120;
+  let time = 600;
 
   // Call the timer every second
   tick();
@@ -217,6 +217,10 @@ let currentAccount, timer;
 currentAccount = account1;
 updateUI(currentAccount);
 containerApp.style.opacity = 1;
+
+// Timer
+if (timer) clearInterval(timer);
+startLogOutTimer();
 
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
